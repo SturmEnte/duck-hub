@@ -6,6 +6,8 @@ const path = require("path");
 const printConfig = require("./util/printConfig");
 
 const auth = require("./routes/auth");
+const api = require("./routes/api");
+
 const info = require("../json/info.json");
 const config = require("../json/config.json");
 
@@ -36,6 +38,7 @@ app.set("views", path.join(__dirname, "views"));
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(auth);
+app.use("/api", api);
 
 app.get("/", (req, res) => {
 	res.render("app", { version: info.version });
