@@ -4,7 +4,7 @@
 	"main": "src/main.js",
 	"scripts": {
 		"start": "node .",
-		"dev": "nodemon .",
+		"dev": "nodemon -i src/public/* .",
 		"test": "npm run dev"
 	},
 	"author": "SturmEnte",
