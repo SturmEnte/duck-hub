@@ -7,6 +7,9 @@ const auth = require("./routes/auth");
 const info = require("../json/info.json");
 const config = require("../json/config.json");
 
+// Setting all config variables that can be set by the environment vars to the environment var value if they have one
+config.port = process.env.PORT || config.port;
+
 console.log("Running duck-hub-server version " + info.version);
 printConfig(config);
 
