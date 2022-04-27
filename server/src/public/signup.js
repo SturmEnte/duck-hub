@@ -5,7 +5,7 @@ const passwordInput = document.getElementById("password");
 signupForm.addEventListener("submit", (event) => {
 	event.preventDefault();
 
-	fetch("/api/signup", {
+	fetch("/api/auth/signup", {
 		method: "post",
 		headers: {
 			"Content-Type": "application/json",
