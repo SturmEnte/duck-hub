@@ -47,7 +47,7 @@ router.post("/signup", async (req, res) => {
 
 	console.log('Created account with username "' + req.body.username + '"');
 
-	res.status(201);
+	res.sendStatus(201);
 });
 
 module.exports = router;
