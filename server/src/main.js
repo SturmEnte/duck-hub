@@ -43,8 +43,10 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(auth);
 app.use("/api", api);
 
-app.get("/", (req, res) => {
-	res.render("app", { version: info.version });
-});
+if (config.web_interface) {
+	app.get("/", (req, res) => {
+		res.render("app", { version: info.version });
+	});
+}
 
 app.listen(config.port);
