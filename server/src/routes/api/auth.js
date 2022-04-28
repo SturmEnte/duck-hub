@@ -15,18 +15,7 @@ router.post("/login", (req, res) => {
 });
 
 router.post("/signup", async (req, res) => {
-	if (req.headers["content-type"] != "application/json") {
-		res.status(415).json({ error: "Unsupported content type" });
-		return;
-	}
-
-	if (!req.body.username) {
-		res.status(422).json({ error: "No username was given" });
-		return;
-	}
-
-	if (!req.body.password) {
-		res.status(422).json({ error: "No password was given" });
+	if (checkRequiredParams) {
 		return;
 	}
 
@@ -49,5 +38,24 @@ router.post("/signup", async (req, res) => {
 
 	res.sendStatus(201);
 });
+
+function checkRequiredParams(req, res) {
+	if (req.headers["content-type"] != "application/json") {
+		res.status(415).json({ error: "Unsupported content type" });
+		return true;
+	}
+
+	if (!req.body.username) {
+		res.status(422).json({ error: "No username was given" });
+		return true;
+	}
+
+	if (!req.body.password) {
+		res.status(422).json({ error: "No password was given" });
+		return true;
+	}
+
+	false;
+}
 
 module.exports = router;
