@@ -8,10 +8,12 @@
 	<body>
 		<!-- This page will be styled later -->
 		<h1>Sign Up</h1>
-		<form id="signup-form">
+		<form id="signup-form" onsubmit>
 			<input type="text" id="username" placeholder="Username" />
 			<input type="password" id="password" placeholder="Password" />
 			<button type="submit">Sign Up</button>
+			<br />
+			<div style="color: red" id="error"></div>
 		</form>
 		<a href="/login">Login</a>
 	</body>

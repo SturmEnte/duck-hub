@@ -5,11 +5,8 @@ const path = require("path");
 
 const printConfig = require("./util/printConfig");
 
-const auth = require("./routes/auth");
-const api = require("./routes/api");
-
 const info = require("../json/info.json");
-const config = require("../json/config.json");
+let config = require("../json/config.json");
 
 // Setting all config variables that can be set by the environment vars to the environment var value if they have one
 config.port = process.env.PORT || config.port;
@@ -17,6 +14,8 @@ config.mongodb_uri = process.env.mongodb_uri || config.mongodb_uri;
 
 console.log("Running duck-hub-server version " + info.version);
 printConfig(config);
+
+global.config = config;
 
 // Setting up mongodb
 mongoose
@@ -29,6 +28,10 @@ mongoose
 		console.log("Error while connecting to the database");
 		process.exit(1);
 	});
+
+// Importing routes
+const auth = require("./routes/auth");
+const api = require("./routes/api");
 
 // Setting up express
 const app = express();

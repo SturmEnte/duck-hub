@@ -1,6 +1,7 @@
 const signupForm = document.getElementById("signup-form");
 const usernameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
+const errorObject = document.getElementById("error");
 
 signupForm.addEventListener("submit", (event) => {
 	event.preventDefault();
@@ -15,9 +16,13 @@ signupForm.addEventListener("submit", (event) => {
 			password: passwordInput.value,
 		}),
 	})
-		.then((res) => res.json())
-		.then((data) => {
-			console.log(data);
+		.then((res) => {
+			res.json().then((data) => {
+				console.log(data);
+				if (res.status != 201) {
+					errorObject.innerHTML = data.error;
+				}
+			});
 		})
 		.catch((error) => {
 			console.log(error);
