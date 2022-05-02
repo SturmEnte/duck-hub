@@ -49,4 +49,6 @@ if (config.web_interface) {
 	});
 }
 
-app.listen(config.port);
+app.listen(config.port, () => {
+	console.log("Listening to port ", config.port);
+});
