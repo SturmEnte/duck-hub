@@ -15,7 +15,7 @@ router.post("/login", (req, res) => {
 });
 
 router.post("/signup", async (req, res) => {
-	if (checkRequiredParams) {
+	if (checkRequiredParams(req, res)) {
 		return;
 	}
 
@@ -55,7 +55,7 @@ function checkRequiredParams(req, res) {
 		return true;
 	}
 
-	false;
+	return false;
 }
 
 module.exports = router;
