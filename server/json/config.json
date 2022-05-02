@@ -2,5 +2,9 @@
 	"port": 3000,
 	"web_interface": true,
 	"mongodb_uri": "mongodb://127.0.0.1:27017/duck-hub",
-	"salt_rounds": 10
+	"salt_rounds": 10,
+	"access_token_secret": "",
+	"access_token_expire_time": "15m",
+	"refresh_token_secret": "",
+	"refresh_token_expire_time": "356d"
 }
