@@ -34,7 +34,6 @@ mongoose
 	});
 
 // Importing routes
-const auth = require("./routes/auth");
 const api = require("./routes/api");
 
 // Setting up express
@@ -44,7 +43,6 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 app.use(express.static(path.join(__dirname, "public")));
-app.use(auth);
 app.use("/api", api);
 
 if (config.web_interface) {
