@@ -47,6 +47,10 @@ app.use("/api", api);
 
 if (config.web_interface) {
 	app.get("/", (req, res) => {
+		res.redirect("/app");
+	});
+
+	app.get("/app", (req, res) => {
 		res.render("app", { version: info.version });
 	});
 
