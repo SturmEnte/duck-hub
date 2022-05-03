@@ -1,6 +1,7 @@
 const loginForm = document.getElementById("login-form");
 const usernameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
+const errorObject = document.getElementById("error");
 
 loginForm.addEventListener("submit", (event) => {
 	event.preventDefault();
@@ -15,9 +16,16 @@ loginForm.addEventListener("submit", (event) => {
 			password: passwordInput.value,
 		}),
 	})
-		.then((res) => res.json())
-		.then((data) => {
-			console.log(data);
+		.then((res) => {
+			res.json().then((data) => {
+				if (res.status != 201) {
+					errorObject.innerHTML = data.error;
+					return;
+				}
+				localStorage.setItem("refresh_token", data.refresh_token);
+				localStorage.setItem("user_info", atob(data.refresh_token.split(".")[1]));
+				window.location.href = "/app";
+			});
 		})
 		.catch((error) => {
 			console.log(error);

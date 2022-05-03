@@ -18,10 +18,13 @@ signupForm.addEventListener("submit", (event) => {
 	})
 		.then((res) => {
 			res.json().then((data) => {
-				console.log(data);
 				if (res.status != 201) {
 					errorObject.innerHTML = data.error;
+					return;
 				}
+				localStorage.setItem("refresh_token", data.refresh_token);
+				localStorage.setItem("user_info", atob(data.refresh_token.split(".")[1]));
+				window.location.href = "/app";
 			});
 		})
 		.catch((error) => {
