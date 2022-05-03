@@ -51,6 +51,14 @@ if (config.web_interface) {
 	app.get("/", (req, res) => {
 		res.render("app", { version: info.version });
 	});
+
+	app.get("/login", (req, res) => {
+		res.render("login");
+	});
+
+	app.get("/signup", (req, res) => {
+		res.render("signup");
+	});
 }
 
 app.listen(config.port, () => {
