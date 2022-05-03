@@ -1,0 +1,24 @@
+{
+	"name": "Duck Hub",
+	"short_name": "DuckHub",
+	"start_url": "/app",
+	"display": "standalone",
+	"orientation": "portrait-primary",
+	"icons": [
+		{
+			"src": "/icons/duck-hub-64x.png",
+			"type": "image/png",
+			"sizes": "64x64"
+		},
+		{
+			"src": "/icons/duck-hub-128x.png",
+			"type": "image/png",
+			"sizes": "128x128"
+		},
+		{
+			"src": "/icons/duck-hub-256x.png",
+			"type": "image/png",
+			"sizes": "256x256"
+		}
+	]
+}
