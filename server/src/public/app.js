@@ -4,15 +4,23 @@ const refreshToken = localStorage.getItem("refresh_token") || "";
 // Check if the user is authenticated
 if (!refreshToken) logout();
 
-if (!userInfo.id || !userInfo.username) {
+// Check if the localy stored user info has all required parameters
+// If not, will the code try to read them out of the refresh token
+// If that fails too, will the user be logged out
+if (!hasUserInfoParams()) {
 	userInfo = JSON.parse(atob(refreshToken.split(".")[1]));
-	if (!userInfo.id || !userInfo.username) logout();
+	if (!hasUserInfoParams()) logout();
 	localStorage.setItem("user_info", JSON.stringify(userInfo));
 }
 
 // Check if the refresh token is outdated
 if (Date.now() - userInfo.exp * 1000 >= 0) {
 	logout();
+}
+
+function hasUserInfoParams() {
+	if (!userInfo.id || !userInfo.username || !userInfo.exp) return false;
+	return true;
 }
 
 function logout() {
