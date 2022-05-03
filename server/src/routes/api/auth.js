@@ -1,4 +1,4 @@
-const { Router, json } = require("express");
+const { Router } = require("express");
 const uuid = require("uuid").v4;
 const bcrypt = require("bcrypt");
 
@@ -14,8 +14,6 @@ const RefreshTokenModel = require("../../models/refreshToken");
 const config = global.config;
 
 const router = Router();
-
-router.use(json());
 
 router.post("/login", async (req, res) => {
 	if (checkRequiredParams(req, res)) {
@@ -70,6 +68,30 @@ router.post("/signup", async (req, res) => {
 	});
 });
 
+router.delete("/logout", async (req, res) => {
+	const refreshToken = req.body.refresh_token;
+
+	if (!refreshToken) {
+		res.status(401).json({ error: "Refresh Token required" });
+		return;
+	}
+
+	if ((await RefreshTokenModel.exists({ token: refreshToken })) === false) {
+		res.status(401).json({ error: "Refresh token invalid" });
+		return;
+	}
+
+	if (!isTokenValid(refreshToken, true)) {
+		res.status(401).json({ error: "Refresh token invalid" });
+		await RefreshTokenModel.deleteOne({ token: refreshToken });
+		return;
+	}
+
+	await RefreshTokenModel.deleteOne({ token: refreshToken });
+
+	res.sendStatus(200);
+});
+
 router.post("/token", async (req, res) => {
 	const refreshToken = req.body.refresh_token;
 
@@ -93,11 +115,6 @@ router.post("/token", async (req, res) => {
 });
 
 function checkRequiredParams(req, res) {
-	if (req.headers["content-type"] != "application/json") {
-		res.status(415).json({ error: "Unsupported content type" });
-		return true;
-	}
-
 	if (!req.body.username) {
 		res.status(422).json({ error: "No username was given" });
 		return true;
