@@ -10,6 +10,11 @@ if (!userInfo.id || !userInfo.username) {
 	localStorage.setItem("user_info", JSON.stringify(userInfo));
 }
 
+// Check if the refresh token is outdated
+if (Date.now() - userInfo.exp * 1000 >= 0) {
+	logout();
+}
+
 function logout() {
 	localStorage.clear("user_info");
 	localStorage.clear("refresh_token");
