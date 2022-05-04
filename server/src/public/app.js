@@ -18,6 +18,25 @@ if (Date.now() - userInfo.exp * 1000 >= 0) {
 	logout();
 }
 
+// Checks if the username has more than 20 characters and shortens it if so
+// The code is in brackets, so that the variables get deletet after the execution
+{
+	const usernameItems = document.getElementsByClassName("username");
+	let username = "";
+
+	if (userInfo.username.length > 20) {
+		const cutUsername = userInfo.username.split("");
+		for (let i = 0; i < 17; i++) {
+			username += cutUsername[i];
+		}
+		username += "...";
+	} else username = userInfo.username;
+
+	for (let i = 0; i < usernameItems.length; i++) {
+		usernameItems[i].innerHTML = username;
+	}
+}
+
 function hasUserInfoParams() {
 	if (!userInfo.id || !userInfo.username || !userInfo.exp) return false;
 	return true;
