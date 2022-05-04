@@ -61,6 +61,15 @@ if (config.web_interface) {
 	app.get("/signup", (req, res) => {
 		res.render("signup");
 	});
+
+	// Added the 404 page twice so it can be cached by the service worker without any problems
+	app.get("/404", (req, res) => {
+		res.render("404");
+	});
+
+	app.get("*", (req, res) => {
+		res.render("404");
+	});
 }
 
 app.listen(config.port, () => {

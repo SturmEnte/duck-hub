@@ -6,6 +6,7 @@ const STATIC_ASSETS = [
 	"/app",
 	"/login",
 	"/signup",
+	"/404",
 	// Icons/Images
 	"/icons/duck-hub-64x.png",
 	// Fonts
@@ -48,9 +49,16 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-	event.respondWith(
-		caches.match(event.request).then((cacheRes) => {
-			return cacheRes || fetch(event.request);
-		})
-	);
+	if (event.request.url.indexOf("/api") === -1) {
+		event.respondWith(
+			caches
+				.match(event.request)
+				.then((cacheRes) => {
+					return cacheRes || fetch(event.request);
+				})
+				.catch(() => {
+					return caches.match("/404");
+				})
+		);
+	}
 });
