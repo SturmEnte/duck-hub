@@ -44,17 +44,17 @@ router.post("/signup", async (req, res) => {
 		return;
 	}
 
+	const id = uuid();
+	const username = String(req.body.username);
+
 	if (
 		await AccountModel.exists({
-			username: req.body.username,
+			username: { $regex: new RegExp(username, "i") },
 		})
 	) {
 		res.status(422).json({ error: "Account already exists" });
 		return;
 	}
-
-	const id = uuid();
-	const username = req.body.username;
 
 	if (username.includes(" ")) {
 		res.status(422).json({ error: "Spaces in usernames are not allowed" });
