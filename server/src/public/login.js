@@ -6,14 +6,24 @@ const errorObject = document.getElementById("error");
 loginForm.addEventListener("submit", (event) => {
 	event.preventDefault();
 
+	let username = usernameInput.value;
+	let password = usernameInput.value;
+
+	// Usernames with spaces are not allowed
+	// This means that we can inform the user that the username or password is wrong
+	if (username.includes(" ")) {
+		errorObject.innerHTML = "Username or password wrong";
+		return;
+	}
+
 	fetch("/api/auth/login", {
 		method: "post",
 		headers: {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({
-			username: usernameInput.value,
-			password: passwordInput.value,
+			username,
+			password,
 		}),
 	})
 		.then((res) => {

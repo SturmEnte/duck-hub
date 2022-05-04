@@ -6,14 +6,23 @@ const errorObject = document.getElementById("error");
 signupForm.addEventListener("submit", (event) => {
 	event.preventDefault();
 
+	let username = usernameInput.value;
+	let password = usernameInput.value;
+
+	// Check if the username contains spaces
+	if (username.includes(" ")) {
+		errorObject.innerHTML = "Spaces in usernames are not allowed";
+		return;
+	}
+
 	fetch("/api/auth/signup", {
 		method: "post",
 		headers: {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({
-			username: usernameInput.value,
-			password: passwordInput.value,
+			username,
+			password,
 		}),
 	})
 		.then((res) => {

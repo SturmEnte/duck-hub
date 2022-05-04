@@ -54,10 +54,16 @@ router.post("/signup", async (req, res) => {
 	}
 
 	const id = uuid();
+	const username = req.body.username;
+
+	if (username.includes(" ")) {
+		res.status(422).json({ error: "Spaces in usernames are not allowed" });
+		return;
+	}
 
 	await AccountModel.create({
 		id,
-		username: req.body.username,
+		username,
 		password: await bcrypt.hash(req.body.password, config.salt_rounds),
 	});
 
