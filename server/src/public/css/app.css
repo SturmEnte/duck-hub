@@ -1,2 +1,79 @@
-@import url("/css/fonts.css");
 @import url("/css/global.css");
+@import url("/css/vars.css");
+
+:root {
+	--sidenav-width: 300px;
+	--sidenav-child-height: 60px;
+	--border-line-color: rgba(0, 0, 0, 0.2);
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	font-size: 20px;
+}
+
+#sidenav {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: var(--sidenav-width);
+	height: 100vh;
+	background: var(--prim-color);
+	box-shadow: 0 -4px 12px 0 rgb(0 0 0 / 7%), 0 -2px 4px rgb(0 0 0 / 5%);
+}
+
+#sidenav-top,
+#sidenav-bottom {
+	width: var(--sidenav-width);
+	height: var(--sidenav-child-height);
+	background: var(--prim-color);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#sidenav-top {
+	border-bottom: var(--border-line-color) 1px solid;
+	font-size: 30px;
+}
+
+#sidenav-middle {
+	height: calc(100vh - 2 * var(--sidenav-child-height));
+	display: flex;
+	align-items: baseline;
+	justify-content: center;
+	overflow-y: auto;
+}
+
+#sidenav-middle * {
+	width: var(--sidenav-width);
+	height: var(--sidenav-child-height);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: 0.5s;
+}
+
+#sidenav-middle *:hover {
+	background: var(--hov-color);
+	color: var(--acs-color);
+}
+
+#sidenav-bottom {
+	border-top: 1px var(--border-line-color) solid;
+}
+
+#sidenav-bottom * {
+	margin: 10px;
+	bottom: 0;
+}
+
+#wrapper {
+	margin-left: var(--sidenav-width);
+	box-sizing: border-box;
+	background: var(--sec-color);
+	width: calc(100vw - var(--sidenav-width));
+	height: 100vh;
+}

@@ -1,0 +1,15 @@
+:root {
+	/* Color Theme Vars (light is default) */
+	--prim-color: var(--light-prim-color);
+	--sec-color: var(--light-sec-color);
+	--acs-color: var(--light-acs-color);
+	--hov-color: var(--light-hov-color);
+	--font-color: var(--light-font-color);
+
+	/* Lightmode Theme */
+	--light-prim-color: #fff;
+	--light-sec-color: rgb(249, 250, 251);
+	--light-acs-color: rgb(68, 98, 182);
+	--light-hov-color: rgba(82, 113, 197, 0.15);
+	--light-font-color: #000;
+}
