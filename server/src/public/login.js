@@ -33,7 +33,6 @@ loginForm.addEventListener("submit", (event) => {
 					return;
 				}
 				localStorage.setItem("refresh_token", data.refresh_token);
-				localStorage.setItem("user_info", atob(data.refresh_token.split(".")[1]));
 				window.location.href = "/app";
 			});
 		})
