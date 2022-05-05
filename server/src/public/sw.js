@@ -1,4 +1,4 @@
-const STATIC_CACHE_NAME = "duck-hub-static-v1";
+const STATIC_CACHE_NAME = "duck-hub-static-v1.0.0";
 
 const STATIC_ASSETS = [
 	"/manifest.json",
@@ -20,6 +20,8 @@ const STATIC_ASSETS = [
 	"/login.js",
 	"/signup.js",
 	"/registerSw.js",
+	// Plugins
+	"/plugins/hi-base64.js",
 ];
 
 self.addEventListener("install", (event) => {
