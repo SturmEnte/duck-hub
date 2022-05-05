@@ -8,7 +8,8 @@ if (!refreshToken) logout();
 // If not, will the code try to read them out of the refresh token
 // If that fails too, will the user be logged out
 if (!hasUserInfoParams()) {
-	userInfo = JSON.parse(atob(refreshToken.split(".")[1]));
+	userInfo = JSON.parse(base64.decode(refreshToken.split(".")[1]));
+	console.log(userInfo);
 	if (!hasUserInfoParams()) logout();
 	localStorage.setItem("user_info", JSON.stringify(userInfo));
 }
