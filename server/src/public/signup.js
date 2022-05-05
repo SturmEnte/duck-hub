@@ -7,7 +7,7 @@ signupForm.addEventListener("submit", (event) => {
 	event.preventDefault();
 
 	let username = usernameInput.value;
-	let password = usernameInput.value;
+	let password = passwordInput.value;
 
 	// Check if the username contains spaces
 	if (username.includes(" ")) {

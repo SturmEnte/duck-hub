@@ -7,7 +7,7 @@ loginForm.addEventListener("submit", (event) => {
 	event.preventDefault();
 
 	let username = usernameInput.value;
-	let password = usernameInput.value;
+	let password = passwordInput.value;
 
 	// Usernames with spaces are not allowed
 	// This means that we can inform the user that the username or password is wrong
