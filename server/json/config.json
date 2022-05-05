@@ -6,5 +6,5 @@
 	"access_token_secret": "",
 	"access_token_expire_time": "15m",
 	"refresh_token_secret": "",
-	"refresh_token_expire_time": "356d"
+	"refresh_token_expire_time": 365
 }

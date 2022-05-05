@@ -36,7 +36,7 @@ module.exports.generateAccessToken = (refreshToken) => {
 
 module.exports.generateRefreshToken = (id, username) => {
 	const token = jwt.sign({ id, username }, config.refresh_token_secret, {
-		expiresIn: config.refresh_token_expire_time,
+		expiresIn: String(config.refresh_token_expire_time) + "d",
 	});
 	RefreshTokenModel.create({ id: uuid(), token, account_id: id });
 	return token;

@@ -1,10 +1,10 @@
 const { Schema, model } = require("mongoose");
 
+// Converts the expiration time from days to minutes
+const expires =
+	Number(global.config.refresh_token_expire_time) * (24 * 60 * 60);
+
 const schema = new Schema({
-	id: {
-		type: String,
-		required: true,
-	},
 	token: {
 		type: String,
 		required: true,
@@ -12,6 +12,11 @@ const schema = new Schema({
 	account_id: {
 		type: String,
 		required: true,
+	},
+	createdAt: {
+		type: Date,
+		expires,
+		default: Date.now,
 	},
 });
 
