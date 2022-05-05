@@ -20,8 +20,8 @@ const STATIC_ASSETS = [
 	"/login.js",
 	"/signup.js",
 	"/registerSw.js",
-	// Plugins
-	"/plugins/hi-base64.js",
+	// Vendor
+	"/vendor/hi-base64.js",
 ];
 
 self.addEventListener("install", (event) => {
