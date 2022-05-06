@@ -54,6 +54,7 @@ body {
 	align-items: center;
 	justify-content: center;
 	transition: 0.5s;
+	cursor: pointer;
 }
 
 #sidenav-middle *:hover {
@@ -63,6 +64,9 @@ body {
 
 #sidenav-bottom {
 	border-top: 1px var(--border-line-color) solid;
+	justify-content: space-between;
+	padding: 0 15px;
+	box-sizing: border-box;
 }
 
 #sidenav-bottom * {
@@ -76,4 +80,8 @@ body {
 	background: var(--sec-color);
 	width: calc(100vw - var(--sidenav-width));
 	height: 100vh;
+}
+
+.button {
+	cursor: pointer;
 }
