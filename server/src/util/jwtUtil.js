@@ -21,8 +21,6 @@ module.exports.isTokenValid = (token, refreshToken = false) => {
 module.exports.generateAccessToken = (refreshToken) => {
 	const refreshTokenData = jwt.verify(refreshToken, config.refresh_token_secret);
 
-	console.log(refreshTokenData);
-
 	if (!refreshTokenData) return undefined;
 
 	return jwt.sign(

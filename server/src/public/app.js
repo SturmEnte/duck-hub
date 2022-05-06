@@ -9,7 +9,6 @@ if (!refreshToken) logout();
 // If that fails too, will the user be logged out
 if (!hasUserInfoParams()) {
 	userInfo = JSON.parse(base64.decode(refreshToken.split(".")[1]));
-	console.log(userInfo);
 	if (!hasUserInfoParams()) logout();
 	localStorage.setItem("user_info", JSON.stringify(userInfo));
 }
@@ -52,11 +51,7 @@ function logout() {
 			"content-type": "application/json",
 		},
 		body: JSON.stringify({ refresh_token: refreshToken }),
-	})
-		.then((res) => {
-			console.log(res);
-		})
-		.finally(() => {
-			window.location.href = "/login";
-		});
+	}).finally(() => {
+		window.location.href = "/login";
+	});
 }
