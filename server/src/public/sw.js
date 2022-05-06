@@ -23,6 +23,7 @@ const STATIC_ASSETS = [
 	"/css/fonts.css",
 	"/css/global.css",
 	// JS
+	"/api.js",
 	"/app.js",
 	"/login.js",
 	"/signup.js",
