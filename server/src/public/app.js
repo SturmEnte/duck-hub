@@ -47,7 +47,7 @@ settingsButton.addEventListener("click", async () => {
 async function openSettings() {
 	wrapper.innerHTML = await (await fetch("/html/settings.html")).text();
 	window.location.hash = "settings";
-	oldActive.classList.remove("sidenav-active");
+	if (oldActive) oldActive.classList.remove("sidenav-active");
 	oldActive = null;
 }
 
