@@ -42,14 +42,16 @@ body {
 #sidenav-middle {
 	height: calc(100vh - 2 * var(--sidenav-child-height));
 	display: flex;
-	align-items: baseline;
-	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	justify-content: baseline;
+	overflow-x: hidden;
 	overflow-y: auto;
 }
 
 #sidenav-middle * {
 	width: var(--sidenav-width);
-	height: var(--sidenav-child-height);
+	min-height: var(--sidenav-child-height);
 	display: flex;
 	align-items: center;
 	justify-content: center;
