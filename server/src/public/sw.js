@@ -93,7 +93,7 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-	if (event.request.url.indexOf("/api") === -1) {
+	if (event.request.url.indexOf("/api/") === -1) {
 		event.respondWith(
 			caches
 				.match(event.request)
