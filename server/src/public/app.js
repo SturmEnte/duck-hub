@@ -38,6 +38,17 @@ if (Date.now() - userInfo.exp * 1000 >= 0) {
 	}
 }
 
+const settingsButton = document.getElementById("settings");
+
+settingsButton.addEventListener("click", async () => {
+	openSettings();
+});
+
+async function openSettings() {
+	wrapper.innerHTML = await (await fetch("/html/settings.html")).text();
+	window.location.hash = "settings";
+}
+
 //#region Plugins
 
 const sidenavMiddle = document.getElementById("sidenav-middle");
@@ -73,14 +84,18 @@ function setupPlugins() {
 	}
 
 	if (!newHash) {
+		if (window.location.hash == "#settings") {
+			openSettings();
+			return;
+		}
 		loadPlugin(Number(window.location.hash.split("#")[1].split("-")[0]));
 	}
 }
 
 window.addEventListener("hashchange", async (event) => {
 	if (pluginConfig == {}) return;
-
-	loadPlugin(Number(window.location.hash.split("#")[1].split("-")[0]));
+	if (window.location.hash !== "#settings")
+		loadPlugin(Number(window.location.hash.split("#")[1].split("-")[0]));
 });
 
 async function loadPlugin(index) {
