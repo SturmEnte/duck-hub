@@ -2,8 +2,8 @@
 	"name": "Duck Hub",
 	"short_name": "DuckHub",
 	"start_url": "/app",
-	"display": "standalone",
-	"orientation": "portrait-primary",
+	"display": "fullscreen",
+	"orientation": "landscape",
 	"icons": [
 		{
 			"src": "/icons/duck-hub-64x.png",
