@@ -26,4 +26,11 @@ async function getAccessToken() {
 
 	accessToken = data.access_token;
 	sessionStorage.setItem("access_token", accessToken);
+
+	data = JSON.parse(base64.decode(accessToken.split(".")[1]));
+
+	// Automaticly requests a new access token after the current one expires
+	setTimeout(() => {
+		getAccessToken();
+	}, data.exp * 1000 - Date.now());
 }
