@@ -59,7 +59,8 @@ body {
 	cursor: pointer;
 }
 
-#sidenav-middle *:hover {
+#sidenav-middle *:hover,
+.sidenav-active {
 	background: var(--hov-color);
 	color: var(--acs-color);
 }

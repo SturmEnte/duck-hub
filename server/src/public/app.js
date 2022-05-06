@@ -47,11 +47,14 @@ settingsButton.addEventListener("click", async () => {
 async function openSettings() {
 	wrapper.innerHTML = await (await fetch("/html/settings.html")).text();
 	window.location.hash = "settings";
+	oldActive.classList.remove("sidenav-active");
+	oldActive = null;
 }
 
 //#region Plugins
 
 const sidenavMiddle = document.getElementById("sidenav-middle");
+let oldActive = undefined;
 
 let pluginConfig = {};
 fetch("/plugins/config.json").then((res) =>
@@ -79,6 +82,7 @@ function setupPlugins() {
 			"onclick",
 			`window.location.hash = "${i}-${plugin.name.toLowerCase()}"`
 		);
+		sidenavPluginElement.id = `btn-${i}`;
 		sidenavPluginElement.innerHTML = plugin.name;
 		sidenavMiddle.appendChild(sidenavPluginElement);
 	}
@@ -88,14 +92,22 @@ function setupPlugins() {
 			openSettings();
 			return;
 		}
-		loadPlugin(Number(window.location.hash.split("#")[1].split("-")[0]));
+		const id = Number(window.location.hash.split("#")[1].split("-")[0]);
+		loadPlugin(id);
+		oldActive = document.getElementById(`btn-${id}`);
+		oldActive.classList.add("sidenav-active");
 	}
 }
 
 window.addEventListener("hashchange", async (event) => {
 	if (pluginConfig == {}) return;
-	if (window.location.hash !== "#settings")
-		loadPlugin(Number(window.location.hash.split("#")[1].split("-")[0]));
+	if (window.location.hash !== "#settings") {
+		const id = Number(window.location.hash.split("#")[1].split("-")[0]);
+		loadPlugin(id);
+		if (oldActive) oldActive.classList.remvove("sidenav-active");
+		oldActive = document.getElementById(`btn-${id}`);
+		oldActive.classList.add("sidenav-active");
+	}
 });
 
 async function loadPlugin(index) {
