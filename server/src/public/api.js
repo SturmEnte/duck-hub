@@ -34,3 +34,5 @@ async function getAccessToken() {
 		getAccessToken();
 	}, data.exp * 1000 - Date.now());
 }
+
+if (!accessToken) getAccessToken();
