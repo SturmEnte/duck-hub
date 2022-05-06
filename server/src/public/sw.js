@@ -7,6 +7,8 @@ const STATIC_ASSETS = [
 	"/login",
 	"/signup",
 	"/404",
+	// HTML
+	"/html/settings.html",
 	// Icons/Images
 	"/icons/duck-hub-64x.png",
 	// Fonts
