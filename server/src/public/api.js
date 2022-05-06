@@ -14,9 +14,15 @@ async function getAccessToken() {
 
 	if (res.status != 200) {
 		console.log("Error while requesting access token", res);
+		return;
 	}
 
-	const data = await res.json();
+	let data = await res.json();
+
+	if (!data.access_token) {
+		console.log("No access token included in the response", res);
+		return;
+	}
 
 	accessToken = data.access_token;
 	sessionStorage.setItem("access_token", accessToken);
