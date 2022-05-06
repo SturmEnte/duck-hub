@@ -1,0 +1,11 @@
+{
+	"defaultPlugin": "Home",
+	"plugins": [
+		{
+			"name": "Home",
+			"html": "home.html",
+			"css": "home.css",
+			"js": "home.js"
+		}
+	]
+}
