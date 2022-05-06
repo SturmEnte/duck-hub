@@ -83,8 +83,38 @@ body {
 	background: var(--sec-color);
 	width: calc(100vw - var(--sidenav-width));
 	height: 100vh;
+	padding: 15px;
+	box-sizing: border-box;
+}
+
+.settings-section {
+	margin-bottom: 10px;
+}
+
+.settings-image {
+	width: 2em;
+	height: 2em;
+	margin-left: 5px;
+}
+
+.title {
+	font-size: 30px;
+}
+
+.section-title {
+	font-size: 25px;
+}
+
+.underline {
+	border-bottom: 1px var(--border-line-color) solid;
 }
 
 .button {
 	cursor: pointer;
+}
+
+.flex-horizontal {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
