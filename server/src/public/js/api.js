@@ -11,7 +11,7 @@ async function getAccessToken() {
 			"content-type": "application/json",
 		},
 		body: JSON.stringify({
-			refresh_token,
+			refresh_token: refreshToken,
 		}),
 	});
 
