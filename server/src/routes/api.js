@@ -13,7 +13,7 @@ router.all("*", (req, res, next) => {
 	if (req.headers["content-type"] != "application/json")
 		return res.status(415).json({ error: "Unsupported content type" });
 
-	// Remove "Berear" from the authorization header
+	// Remove "Bearer" from the authorization header
 	const token = String(req.headers.authorization).split(" ")[1];
 	if (!req.path.includes("auth") && (!token || isTokenValid(token) == false))
 		return res.status(401).json({ error: "Invalid or none authorization token" });
