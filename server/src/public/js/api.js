@@ -1,6 +1,8 @@
 const refreshToken = localStorage.getItem("refresh_token");
 let accessToken = sessionStorage.getItem("access_token") || "";
 
+let api = {};
+
 //#region Non-API stuff
 async function getAccessToken() {
 	const res = await fetch("/api/auth/token", {
@@ -38,5 +40,3 @@ async function getAccessToken() {
 
 if (!accessToken) getAccessToken();
 //#endregion Non-API stuff
-
-let api = {};
