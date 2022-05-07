@@ -23,11 +23,11 @@ const STATIC_ASSETS = [
 	"/css/fonts.css",
 	"/css/global.css",
 	// JS
-	"/api.js",
-	"/app.js",
-	"/login.js",
-	"/signup.js",
-	"/registerSw.js",
+	"/js/api.js",
+	"/js/app.js",
+	"/js/login.js",
+	"/js/signup.js",
+	"/js/registerSw.js",
 	// Vendor
 	"/vendor/hi-base64.js",
 ];
