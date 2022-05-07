@@ -48,24 +48,24 @@ if (config.web_interface) {
 	});
 
 	app.get("/app", (req, res) => {
-		res.sendFile("./views/app.html");
+		res.sendFile(path.join(__dirname, "./views/app.html"));
 	});
 
 	app.get("/login", (req, res) => {
-		res.sendFile("./views/login.html");
+		res.sendFile(path.join(__dirname, "./views/login.html"));
 	});
 
 	app.get("/signup", (req, res) => {
-		res.sendFile("./views/signup.html");
+		res.sendFile(path.join(__dirname, "./views/signup.html"));
 	});
 
 	// Added the 404 page twice so it can be cached by the service worker without any problems
 	app.get("/404", (req, res) => {
-		res.sendFile("./views/404.html");
+		res.sendFile(path.join(__dirname, "./views/404.html"));
 	});
 
 	app.get("*", (req, res) => {
-		res.sendFile("./views/404.html");
+		res.sendFile(path.join(__dirname, "./views/404.html"));
 	});
 }
 
