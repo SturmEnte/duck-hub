@@ -26,7 +26,7 @@ async function copyServer() {
 }
 
 async function compressAndCopyJs() {
-	await src("server/src/public/**/*.js")
+	await src("server/src/public/js/**/*.js")
 		.pipe(compressJs({ compress: true }))
 		.pipe(dest("build/server/src/public/"));
 }
