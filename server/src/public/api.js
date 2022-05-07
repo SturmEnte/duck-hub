@@ -1,4 +1,4 @@
-const refresh_token = localStorage.getItem("refresh_token");
+const refreshToken = localStorage.getItem("refresh_token");
 let accessToken = sessionStorage.getItem("access_token") || "";
 
 //#region Non-API stuff
@@ -38,3 +38,5 @@ async function getAccessToken() {
 
 if (!accessToken) getAccessToken();
 //#endregion Non-API stuff
+
+let api = {};

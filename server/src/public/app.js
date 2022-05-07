@@ -1,5 +1,4 @@
 let userInfo = JSON.parse(localStorage.getItem("user_info") || "{}");
-const refreshToken = localStorage.getItem("refresh_token") || "";
 const wrapper = document.getElementById("wrapper");
 
 // Check if the user is authenticated
