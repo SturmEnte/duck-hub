@@ -10,7 +10,7 @@ router.use(json());
 
 // Check if the content type is json
 router.all("*", (req, res, next) => {
-	if (req.headers["content-type"] != "application/json")
+	if (req.method === "post" && req.headers["content-type"] != "application/json")
 		return res.status(415).json({ error: "Unsupported content type" });
 
 	// Remove "Bearer" from the authorization header
