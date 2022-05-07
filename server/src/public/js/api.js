@@ -39,4 +39,10 @@ async function getAccessToken() {
 }
 
 if (!accessToken) getAccessToken();
+if (
+	Date.now() - JSON.parse(base64.decode(accessToken.split(".")[1])).exp * 1000 >
+	0
+) {
+	getAccessToken();
+}
 //#endregion Non-API stuff
