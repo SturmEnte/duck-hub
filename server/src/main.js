@@ -39,9 +39,6 @@ const api = require("./routes/api");
 // Setting up express
 const app = express();
 
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
-
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/api", api);
 
@@ -51,24 +48,24 @@ if (config.web_interface) {
 	});
 
 	app.get("/app", (req, res) => {
-		res.render("app", { version: info.version });
+		res.sendFile("./views/app.html");
 	});
 
 	app.get("/login", (req, res) => {
-		res.render("login");
+		res.sendFile("./views/login.html");
 	});
 
 	app.get("/signup", (req, res) => {
-		res.render("signup");
+		res.sendFile("./views/signup.html");
 	});
 
 	// Added the 404 page twice so it can be cached by the service worker without any problems
 	app.get("/404", (req, res) => {
-		res.render("404");
+		res.sendFile("./views/404.html");
 	});
 
 	app.get("*", (req, res) => {
-		res.render("404");
+		res.sendFile("./views/404.html");
 	});
 }
 
