@@ -3,6 +3,7 @@ const { Router, json } = require("express");
 const { isTokenValid } = require("../util/jwtUtil");
 
 const auth = require("./api/auth");
+const data = require("./api/data");
 
 const router = Router();
 
@@ -22,6 +23,7 @@ router.all("*", (req, res, next) => {
 });
 
 router.use("/auth", auth);
+router.use("/data", data);
 
 router.all("*", (req, res) => {
 	res.status(404).json({ error: "Endpoint not found" });

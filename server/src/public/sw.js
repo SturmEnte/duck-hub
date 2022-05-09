@@ -25,6 +25,7 @@ const STATIC_ASSETS = [
 	// JS
 	"/js/api.js",
 	"/js/app.js",
+	"/js/db.js",
 	"/js/login.js",
 	"/js/signup.js",
 	"/js/registerSw.js",
