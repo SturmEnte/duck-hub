@@ -8,10 +8,7 @@ const config = global.config;
 const router = Router();
 
 router.get("/getAllUserData", async (req, res) => {
-	const tokenData = verify(
-		req.headers.authorization.split(" ")[1],
-		config.access_token_secret
-	);
+	const tokenData = verify(req.headers.authorization.split(" ")[1], config.access_token_secret);
 
 	if (!tokenData.id) {
 		res.status(422).json({ error: "The token doesn't cotain the required data" });
@@ -19,15 +16,16 @@ router.get("/getAllUserData", async (req, res) => {
 	}
 
 	const userData = await UserData.findOne({ user_id: tokenData.id });
+	if (!userData) {
+		res.json([]);
+		return;
+	}
 
 	res.json(userData.data || []);
 });
 
 router.post("/setUserData", async (req, res) => {
-	const tokenData = verify(
-		req.headers.authorization.split(" ")[1],
-		config.access_token_secret
-	);
+	const tokenData = verify(req.headers.authorization.split(" ")[1], config.access_token_secret);
 
 	if (!tokenData.id) {
 		res.status(422).json({ error: "The token doesn't cotain the required data" });
@@ -37,7 +35,7 @@ router.post("/setUserData", async (req, res) => {
 	const userDataObject = await UserData.findOne({ user_id: tokenData.id });
 
 	if (userDataObject) {
-		let newData = userDataObject.data;
+		let newData = userDataObject.data || [];
 		newData = newData.filter((data) => data.key !== req.body.key);
 		newData.push(req.body);
 		await UserData.updateOne({ user_id: tokenData.id }, { data: newData });
