@@ -3,6 +3,8 @@ let accessToken = sessionStorage.getItem("access_token") || "";
 
 let api = {};
 
+api.db = db;
+
 //#region Non-API stuff
 async function getAccessToken() {
 	const res = await fetch("/api/auth/token", {
