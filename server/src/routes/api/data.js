@@ -7,15 +7,20 @@ const config = global.config;
 
 const router = Router();
 
-router.get("/getAllUserData", (req, res) => {
+router.get("/getAllUserData", async (req, res) => {
 	const tokenData = verify(
 		req.headers.authorization.split(" ")[1],
 		config.access_token_secret
 	);
 
-	console.log(tokenData);
+	if (!tokenData.id) {
+		res.status(422).json({ error: "The token doesn't cotain the required data" });
+		return;
+	}
 
-	res.json([]);
+	const userData = await UserData.findOne({ user_id: tokenData.id });
+
+	res.json(userData.data || []);
 });
 
 router.post("/setUserData", async (req, res) => {

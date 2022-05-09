@@ -52,7 +52,6 @@ db.load = async () => {
 	}
 
 	newData = false;
-
 	resData.forEach((value) => {
 		if (data.has(value.key)) {
 			data.set(value.key, value.value);
@@ -61,7 +60,7 @@ db.load = async () => {
 	});
 
 	if (newData === true) {
-		db.save();
+		db.saveLocal();
 	}
 };
 
