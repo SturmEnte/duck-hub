@@ -16,6 +16,8 @@ const STATIC_ASSETS = [
 	"/icons/duck-hub-64x.png",
 	"/img/settings-light.svg",
 	"/img/logout-light.svg",
+	"/img/description-light.svg",
+	"/img/code-light.svg",
 	// Fonts
 	"/fonts/OpenSans-Regular.ttf",
 	// CSS
@@ -49,11 +51,7 @@ self.addEventListener("install", (event) => {
 			const plugin = pluginConfig.plugins[i];
 			const name = String(plugin.name.toLowerCase());
 			console.log(name);
-			filesToCache.push(
-				`/plugins/${name}/${plugin.html}`,
-				`/plugins/${name}/${plugin.css}`,
-				`/plugins/${name}/${plugin.js}`
-			);
+			filesToCache.push(`/plugins/${name}/${plugin.html}`, `/plugins/${name}/${plugin.css}`, `/plugins/${name}/${plugin.js}`);
 		}
 
 		console.log(filesToCache);
@@ -84,11 +82,7 @@ self.addEventListener("install", (event) => {
 self.addEventListener("activate", (event) => {
 	event.waitUntil(
 		caches.keys().then((keys) => {
-			return Promise.all(
-				keys
-					.filter((key) => key !== STATIC_CACHE_NAME)
-					.map((key) => caches.delete(key))
-			);
+			return Promise.all(keys.filter((key) => key !== STATIC_CACHE_NAME).map((key) => caches.delete(key)));
 		})
 	);
 });
