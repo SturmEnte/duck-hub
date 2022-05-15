@@ -27,8 +27,7 @@ const STATIC_ASSETS = [
 	"/js/api.js",
 	"/js/app.js",
 	"/js/db.js",
-	"/js/login.js",
-	"/js/signup.js",
+	"/js/auth.js",
 	"/js/registerSw.js",
 	"js/cachePlugins.js",
 	// Vendor
