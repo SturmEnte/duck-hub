@@ -68,19 +68,13 @@ function setupPlugins() {
 	for (let i = 0; i < pluginConfig.plugins.length; i++) {
 		const plugin = pluginConfig.plugins[i];
 
-		if (
-			plugin.name === pluginConfig.defaultPlugin &&
-			window.location.hash == ""
-		) {
+		if (plugin.name === pluginConfig.defaultPlugin && window.location.hash == "") {
 			window.location.hash = i + "-" + plugin.name.toLowerCase();
 			newHash = true;
 		}
 
 		const sidenavPluginElement = document.createElement("div");
-		sidenavPluginElement.setAttribute(
-			"onclick",
-			`window.location.hash = "${i}-${plugin.name.toLowerCase()}"`
-		);
+		sidenavPluginElement.setAttribute("onclick", `window.location.hash = "${i}-${plugin.name.toLowerCase()}"`);
 		sidenavPluginElement.id = `btn-${i}`;
 		sidenavPluginElement.innerHTML = plugin.name;
 		sidenavMiddle.appendChild(sidenavPluginElement);
@@ -112,14 +106,10 @@ window.addEventListener("hashchange", async (event) => {
 async function loadPlugin(index) {
 	const plugin = pluginConfig.plugins[index];
 
-	const html = await (
-		await fetch(`/plugins/${plugin.name.toLowerCase()}/${plugin.html}`)
-	).text();
+	const html = await (await fetch(`/plugins/${plugin.name.toLowerCase()}/${plugin.html}`)).text();
 
 	const style = document.createElement("style");
-	style.innerHTML = await (
-		await fetch(`/plugins/${plugin.name.toLowerCase()}/${plugin.css}`)
-	).text();
+	style.innerHTML = await (await fetch(`/plugins/${plugin.name.toLowerCase()}/${plugin.css}`)).text();
 
 	const script = document.createElement("script");
 	script.src = `/plugins/${plugin.name.toLowerCase()}/${plugin.js}`;
@@ -134,6 +124,38 @@ async function loadPlugin(index) {
 function hasUserInfoParams() {
 	if (!userInfo.id || !userInfo.username || !userInfo.exp) return false;
 	return true;
+}
+
+function changePassword(event) {
+	event.preventDefault();
+
+	const oldPassword = document.getElementById("oldPassword").value;
+	const newPassword = document.getElementById("newPassword").value;
+
+	if (!oldPassword || !newPassword) {
+		alert("You must enter the old and the new password to change your password");
+		return;
+	}
+
+	fetch("/api/account/changePassword", {
+		method: "post",
+		headers: {
+			Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
+			"content-type": "application/json",
+		},
+		body: JSON.stringify({
+			oldPassword,
+			newPassword,
+		}),
+	}).then(async (res) => {
+		if (res.status === 200) {
+			alert("Changed password successfully, you will be logged out.");
+			logout();
+			return;
+		} else {
+			alert(await res.body.json().error);
+		}
+	});
 }
 
 function logout() {
