@@ -7,8 +7,6 @@
 		"dev": "nodemon -i src/public/* .",
 		"test": "npm run dev"
 	},
-	"author": "SturmEnte",
-	"license": "MIT",
 	"devDependencies": {
 		"dotenv": "^16.0.0",
 		"nodemon": "^2.0.15"
