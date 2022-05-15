@@ -5,19 +5,19 @@
 		<title>Duck Hub | Login</title>
 		<link rel="shortcut icon" href="/icons/duck-hub-64x.png" type="image/png" />
 		<link rel="manifest" href="manifest.json" />
+		<link rel="stylesheet" href="/css/auth.css" />
 		<script src="/js/registerSw.js"></script>
 		<script src="/js/login.js" defer></script>
 	</head>
 	<body>
-		<!-- This page will be styled later -->
-		<h1>Login</h1>
 		<form id="login-form">
+			<div class="title" id="auth-type">Login</div>
 			<input type="text" id="username" placeholder="Username" />
 			<input type="password" id="password" placeholder="Password" />
+			<div style="color: red" id="error">‎</div>
 			<button type="submit">Login</button>
-			<br />
-			<div style="color: red" id="error"></div>
+			<div>or</div>
+			<button type="button" onclick="window.location.href='/signup'" id="other-option">Sign Up</button>
 		</form>
-		<a href="/signup">Sign Up</a>
 	</body>
 </html>

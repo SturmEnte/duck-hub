@@ -1,5 +1,4 @@
 @import url("/css/global.css");
-@import url("/css/vars.css");
 
 :root {
 	--sidenav-width: 300px;
@@ -95,10 +94,6 @@ body {
 	width: 2em;
 	height: 2em;
 	margin-left: 5px;
-}
-
-.title {
-	font-size: 30px;
 }
 
 .section-title {

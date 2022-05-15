@@ -9,7 +9,10 @@
 	/* Lightmode Theme */
 	--light-prim-color: #fff;
 	--light-sec-color: rgb(249, 250, 251);
-	--light-acs-color: rgb(68, 98, 182);
+	--light-acs-color: /*rgb(93, 118, 189)*/ hsl(235, calc(var(--saturation-factor, 1) * 85.6%), 64.7%);
 	--light-hov-color: rgba(82, 113, 197, 0.15);
 	--light-font-color: #000;
+
+	/* Other */
+	--border-radius: 10px;
 }

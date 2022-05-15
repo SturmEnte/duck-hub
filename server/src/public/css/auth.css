@@ -1,0 +1,61 @@
+@import url("/css/global.css");
+
+:root {
+	--form-width: 320px;
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: var(--sec-color);
+}
+
+form {
+	margin-bottom: 15vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	width: var(--form-width);
+	height: 400px;
+	background: var(--prim-color);
+	box-shadow: 0px 0px 20px rgb(0 0 0 / 15%);
+	border-radius: var(--border-radius);
+	box-sizing: border-box;
+}
+
+input,
+button,
+a {
+	border: none;
+	height: 40px;
+	width: calc(var(--form-width) - 40px);
+	font-size: 18px;
+}
+
+input {
+	border-bottom: solid var(--acs-color) 1px;
+}
+
+button {
+	border-radius: var(--border-radius);
+	background: var(--acs-color);
+	color: var(--prim-color);
+	cursor: pointer;
+}
+
+#auth-type {
+	margin-top: 15px;
+}
+
+#other-option {
+	margin-bottom: 15px;
+}
+
+.title {
+	font-size: 40px;
+	font-weight: 500;
+}
