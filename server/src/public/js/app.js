@@ -161,6 +161,7 @@ function changePassword(event) {
 function logout() {
 	localStorage.clear("user_info");
 	localStorage.clear("refresh_token");
+	localStorage.clear(LOCAL_DB_CACHE_NAME);
 	fetch("/api/auth/logout", {
 		method: "delete",
 		headers: {
