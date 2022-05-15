@@ -11,10 +11,8 @@ let config = require("../json/config.json");
 // Setting all config variables that can be set by the environment vars to the environment var value if they have one
 config.port = process.env.PORT || config.port;
 config.mongodb_uri = process.env.mongodb_uri || config.mongodb_uri;
-config.access_token_secret =
-	process.env.access_token_secret || config.access_token_secret;
-config.refresh_token_secret =
-	process.env.refresh_token_secret || config.refresh_token_secret;
+config.access_token_secret = process.env.access_token_secret || config.access_token_secret;
+config.refresh_token_secret = process.env.refresh_token_secret || config.refresh_token_secret;
 
 console.log("Running duck-hub-server version " + info.version);
 printConfig(config);
@@ -48,24 +46,24 @@ if (config.web_interface) {
 	});
 
 	app.get("/app", (req, res) => {
-		res.sendFile(path.join(__dirname, "./views/app.html"));
+		res.sendFile(path.join(__dirname, "./html/app.html"));
 	});
 
 	app.get("/login", (req, res) => {
-		res.sendFile(path.join(__dirname, "./views/login.html"));
+		res.sendFile(path.join(__dirname, "./html/login.html"));
 	});
 
 	app.get("/signup", (req, res) => {
-		res.sendFile(path.join(__dirname, "./views/signup.html"));
+		res.sendFile(path.join(__dirname, "./html/signup.html"));
 	});
 
 	// Added the 404 page twice so it can be cached by the service worker without any problems
 	app.get("/404", (req, res) => {
-		res.sendFile(path.join(__dirname, "./views/404.html"));
+		res.sendFile(path.join(__dirname, "./html/404.html"));
 	});
 
 	app.get("*", (req, res) => {
-		res.sendFile(path.join(__dirname, "./views/404.html"));
+		res.sendFile(path.join(__dirname, "./html/404.html"));
 	});
 }
 
