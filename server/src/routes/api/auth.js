@@ -2,11 +2,7 @@ const { Router } = require("express");
 const uuid = require("uuid").v4;
 const bcrypt = require("bcrypt");
 
-const {
-	generateRefreshToken,
-	generateAccessToken,
-	isTokenValid,
-} = require("../../util/jwtUtil");
+const { generateRefreshToken, generateAccessToken, isTokenValid } = require("../../util/jwtUtil");
 
 const AccountModel = require("../../models/account");
 const RefreshTokenModel = require("../../models/refreshToken");
