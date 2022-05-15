@@ -1,5 +1,4 @@
 const STATIC_CACHE_NAME = "duck-hub-static-v1.0.0";
-const PLUGIN_CACHE_NAME = "duck-hub-plugins-v1.0.0";
 
 const STATIC_ASSETS = [
 	// Json
@@ -31,6 +30,7 @@ const STATIC_ASSETS = [
 	"/js/login.js",
 	"/js/signup.js",
 	"/js/registerSw.js",
+	"js/cachePlugins.js",
 	// Vendor
 	"/vendor/hi-base64.js",
 ];
@@ -41,42 +41,7 @@ self.addEventListener("install", (event) => {
 		await staticCache.addAll(STATIC_ASSETS);
 	}
 
-	async function cachePlugins() {
-		const pluginCache = await caches.open(PLUGIN_CACHE_NAME);
-		const pluginConfig = await (await fetch("/plugins/config.json")).json();
-
-		let filesToCache = [];
-
-		for (let i = 0; i < pluginConfig.plugins.length; i++) {
-			const plugin = pluginConfig.plugins[i];
-			const name = String(plugin.name.toLowerCase());
-			console.log(name);
-			filesToCache.push(`/plugins/${name}/${plugin.html}`, `/plugins/${name}/${plugin.css}`, `/plugins/${name}/${plugin.js}`);
-		}
-
-		console.log(filesToCache);
-
-		await pluginCache.addAll(filesToCache);
-	}
-
-	// I don't know why or how but as soon as I delete this, the plugin cashing doen't work anymore
-	// If you know why, then please let me know
-
-	/*event.waitUntil(
-		caches
-			.open("v1")
-			.then((cache) => {
-				return cache.addAll([
-					`/plugins/${plugin.name.toLowerCase()}/${plugin.html}`,
-					`/plugins/${plugin.name.toLowerCase()}/${plugin.css}`,
-					`/plugins/${plugin.name.toLowerCase()}/${plugin.js}`,
-				]);
-			})
-			.catch(console.log)
-	);*/
-
 	event.waitUntil(cacheStatic());
-	//event.waitUntil(cachePlugins());
 });
 
 self.addEventListener("activate", (event) => {
