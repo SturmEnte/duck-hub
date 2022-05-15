@@ -1,14 +1,29 @@
 <div class="title">Settings</div>
 
+<!-- Account -->
 <br />
 <div class="section-title underline settings-section">Account</div>
+
+<div class="button flex-vertical">
+	<div>Change Password</div>
+	<form id="changePasswordForm" style="padding-left: 10px" onsubmit="changePassword()">
+		<label>Old Password</label>
+		<input type="password" id="oldPassword" />
+		<label>New Password</label>
+		<input type="password" id="newPassword" />
+		<button type="submit">Change Password</button>
+	</form>
+</div>
+
 <div class="button flex-horizontal" onclick="logout()">
 	<div>Logout</div>
 	<img src="/img/logout-light.svg" alt="Logout Img" class="settings-image" />
 </div>
 
+<!-- Other -->
 <br />
 <div class="section-title underline settings-section">Other</div>
+
 <div class="button flex-horizontal" onclick="alert('Not Implemented Yet')">
 	<div>Licenses</div>
 	<img src="/img/description-light.svg" alt="Licenses Img" class="settings-image" />
