@@ -53,7 +53,7 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-	if (event.request.url.indexOf("/api/") === -1) {
+	if (!event.request.url.includes("api")) {
 		event.respondWith(
 			caches
 				.match(event.request)
@@ -64,5 +64,6 @@ self.addEventListener("fetch", (event) => {
 					return caches.match("/404");
 				})
 		);
-	}
+	} else if (event.request.url.includes("data")) {
+	} else event.respondWith(fetch(event.request));
 });

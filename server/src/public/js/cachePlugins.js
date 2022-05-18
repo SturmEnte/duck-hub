@@ -13,7 +13,6 @@ const PLUGIN_CACHE_NAME = "duck-hub-plugins-v1.0.0";
 	for (let i = 0; i < pluginConfig.plugins.length; i++) {
 		const plugin = pluginConfig.plugins[i];
 		const name = String(plugin.name.toLowerCase());
-		console.log(name);
 		filesToCache.push(`/plugins/${name}/${plugin.html}`, `/plugins/${name}/${plugin.css}`, `/plugins/${name}/${plugin.js}`);
 	}
 

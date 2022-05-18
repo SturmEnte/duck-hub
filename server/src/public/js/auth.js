@@ -52,8 +52,6 @@ authForm.addEventListener("submit", (event) => {
 					errorObject.innerHTML = data.error;
 					return;
 				}
-				console.log(res);
-				console.log(data);
 				localStorage.setItem("refresh_token", data.refresh_token);
 				window.location.href = "/app";
 			});
