@@ -64,7 +64,7 @@ db.load = async () => {
 		resData.forEach((value) => {
 			if (data.get(value.key) == value.value) return;
 			done.push(value.key);
-			db.setOnline(value.key, data.get(value.key));
+			await db.setOnline(value.key, data.get(value.key));
 			console.log("Found local var thats newer than the offline one: ", value.key);
 		});
 
@@ -72,7 +72,7 @@ db.load = async () => {
 		data.forEach((value, key) => {
 			console.log("Data ", key);
 			if (done.includes(key)) return;
-			db.setOnline(key, value);
+			await db.setOnline(key, value);
 			console.log("Found var thats only offline: ", key);
 		});
 	}
