@@ -48,6 +48,7 @@ async function openSettings() {
 	window.location.hash = "settings";
 	if (oldActive) oldActive.classList.remove("sidenav-active");
 	oldActive = null;
+	document.getElementById("changePasswordForm").addEventListener("submit", changePassword);
 }
 
 //#region Plugins
