@@ -61,7 +61,7 @@ db.load = async () => {
 	// Override the online data with the local data if the local data is newer than the online data
 	if (newData === false) {
 		let done = [];
-		resData.forEach((value) => {
+		resData.forEach(async (value) => {
 			if (data.get(value.key) == value.value) return;
 			done.push(value.key);
 			await db.setOnline(value.key, data.get(value.key));
@@ -69,7 +69,7 @@ db.load = async () => {
 		});
 
 		// Set all variables that only exist offline
-		data.forEach((value, key) => {
+		data.forEach(async (value, key) => {
 			console.log("Data ", key);
 			if (done.includes(key)) return;
 			await db.setOnline(key, value);
