@@ -64,6 +64,5 @@ self.addEventListener("fetch", (event) => {
 					return caches.match("/404");
 				})
 		);
-	} else if (event.request.url.includes("data")) {
-	} else event.respondWith(fetch(event.request));
+	}
 });
