@@ -1,5 +1,7 @@
 *node_modules/
 build/
 
+server/src/public/app.js
 *.env
 *TODOS*
+*.old*
