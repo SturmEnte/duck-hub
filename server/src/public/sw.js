@@ -1,4 +1,5 @@
-const STATIC_CACHE_NAME = "duck-hub-static-v1.0.0";
+const STATIC_CACHE_NAME = "duck-hub-static";
+const STATIC_CACHE_VERSION = "v1.0.0";
 
 const STATIC_ASSETS = [
 	// Json
@@ -37,7 +38,7 @@ const STATIC_ASSETS = [
 
 self.addEventListener("install", (event) => {
 	async function cacheStatic() {
-		const staticCache = await caches.open(STATIC_CACHE_NAME);
+		const staticCache = await caches.open(STATIC_CACHE_NAME + "-" + STATIC_CACHE_VERSION);
 		await staticCache.addAll(STATIC_ASSETS);
 	}
 
@@ -47,7 +48,7 @@ self.addEventListener("install", (event) => {
 self.addEventListener("activate", (event) => {
 	event.waitUntil(
 		caches.keys().then((keys) => {
-			return Promise.all(keys.filter((key) => key !== STATIC_CACHE_NAME).map((key) => caches.delete(key)));
+			return Promise.all(keys.filter((key) => key.includes(STATIC_CACHE_NAME) && key !== STATIC_CACHE_NAME + "-" + STATIC_CACHE_VERSION).map((key) => caches.delete(key)));
 		})
 	);
 });
