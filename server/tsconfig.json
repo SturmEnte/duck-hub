@@ -1,8 +1,12 @@
 {
 	"compilerOptions": {
+		"outDir": "./src/public/",
+		"noImplicitAny": true,
+		"module": "ES2020",
 		"target": "es2020",
-		"moduleResolution": "classic",
-		"outFile": "./src/public/app.js",
-		"allowJs": false
+		"allowJs": true
+	},
+	"watchOptions": {
+		"excludeDirectories": ["node_modules"]
 	}
 }
