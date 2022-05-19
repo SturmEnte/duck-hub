@@ -2,7 +2,7 @@
 
 ## About
 
-Duck Hub is a self-hostable app which can be used to do nearly anything with the support of plugins. You can create multiple accounts and add as many plugins to your instance as you want. There is a simple front-end api for interacting with the server without the need for any fetch() calls (on the developers site).
+Duck Hub is a self-hostable app that can be used to do nearly anything with the support of plugins. You can create multiple accounts and add as many plugins to your instance as you want. There is a simple front-end api for interacting with the server without the need for any fetch() calls (on the developers site).
 
 ## Notice
 
