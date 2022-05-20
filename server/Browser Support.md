@@ -16,11 +16,8 @@ Following features may not work in Firefox:
 
 - Special characters in usernames may look weird. 
   
-  Example (The usrname is "Jürgen"):
-  
-  ```
-  insert example
-  ```
+  Example (The username is "Jürgen"):
+  ![87398475935](https://user-images.githubusercontent.com/55847228/169602420-6629fd2e-9ef0-4127-9f39-3bfb137fc98a.PNG)
 
 - Firefox doesn't sipport PWA's (Progressive Web App)
 
