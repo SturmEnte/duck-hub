@@ -2,6 +2,8 @@
 
 Here is a list of browser(type)s and their support status
 
+Unsupported features will mostlikely be implemented if the browser supports the requirements  (For example PWA).
+
 ## Browsers
 
 ### Chromium Browsers
