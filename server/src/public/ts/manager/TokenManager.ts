@@ -12,6 +12,7 @@ export default class TokenManager {
 	constructor(config: Config) {
 		this.config = config;
 		this.refreshToken = localStorage.getItem(this.config.refreshTokenStoreName) || "";
+		this.accessToken = sessionStorage.getItem(this.config.accessTokenCacheName);
 
 		// Validate refresh token
 		if (!this.refreshToken) {
@@ -40,6 +41,41 @@ export default class TokenManager {
 
 	public getTokenUserData(): TokenUserData {
 		return this.userData;
+	}
+
+	public async getAccessToken(): Promise<string> {
+		let accessToken = this.accessToken;
+		let accessTokenData = this.getTokenData(accessToken);
+
+		if (!accessToken || Date.now() - accessTokenData.exp * 1000 >= 0) {
+			const res = await fetch("/api/auth/token", {
+				method: "post",
+				headers: {
+					"content-type": "application/json",
+				},
+				body: JSON.stringify({
+					refresh_token: this.refreshToken,
+				}),
+			});
+
+			if (res.status != 200) {
+				console.log("Error while requesting access token", res);
+				throw "Error while fetching access token. Response code: " + res.status;
+			}
+
+			let data = await res.json();
+
+			if (!data.access_token) {
+				console.log("No access token included in the response", res);
+				throw "Error while fetching access token. Response code: " + res.status;
+			}
+
+			accessToken = data.access_token;
+			sessionStorage.setItem(this.config.accessTokenCacheName, accessToken);
+		}
+
+		this.accessToken = accessToken;
+		return accessToken;
 	}
 
 	private getTokenData(token: string): any {

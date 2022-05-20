@@ -5,5 +5,6 @@ export default function (): Config {
 		version: "1.0.0",
 		pluginCacheName: "duck-hub-plugins",
 		refreshTokenStoreName: "refresh_token",
+		accessTokenCacheName: "access_token",
 	};
 }
