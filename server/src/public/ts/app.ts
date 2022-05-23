@@ -1,7 +1,9 @@
-import cachePlugins from "./utility/cachePlugins";
-import loadConfig from "./utility/loadConfig";
 import TokenManager from "./manager/TokenManager";
 import Router from "./manager/Router";
+
+import cachePlugins from "./utility/cachePlugins";
+import loadPlugins from "./utility/loadPlugins";
+import loadConfig from "./utility/loadConfig";
 
 import Config from "./types/Config";
 import TokenUserData from "./types/TokenUserData";
@@ -10,7 +12,7 @@ const config: Config = loadConfig();
 const tokenManager: TokenManager = new TokenManager(config);
 let router: Router;
 
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
 	cachePlugins(config.pluginCacheName + "-v" + config.version)
 		.then(() => {
 			console.log("Cached plugins");
@@ -27,9 +29,22 @@ window.addEventListener("load", () => {
 	}
 
 	// Initialization of the router
-	router = new Router();
-	router.setFallback("/404");
-	router.setCurrent("/test");
+	try {
+		router = new Router();
+		router.setFallback("/404");
+		await loadPlugins(router);
+
+		console.log("Loaded plugins");
+	} catch (err) {
+		document.getElementById("wrapper").innerHTML =
+			'An error occured while loading the page. Please refresh the page and open an issue, when the error keeps occuring. You can open a issue <a href="https://github.com/sturmente/duck-hub">here</a>';
+		console.log("Error while loading router: ", err);
+	}
+
+	// Save the userinfo in the session storage temporarily so that plugins can still use the username
+	sessionStorage.setItem("user-info", JSON.stringify(tokenManager.getTokenUserData()));
+
+	router.setCurrent("/home");
 });
 
 function insertUsername() {
