@@ -32,7 +32,21 @@ window.addEventListener("load", async () => {
 	try {
 		router = new Router();
 		router.setFallback("/404");
-		await loadPlugins(router);
+		const defaultPage = await (await loadPlugins(router)).toLowerCase();
+		router.set("/settings", "/html/settings.html", undefined, undefined);
+		document.getElementById("sidenav-bottom").onclick = async () => await router.setCurrent("/settings");
+
+		// Load the right page when using the forward or backward button
+		window.onpopstate = async (event) => {
+			await router.setCurrent(event.state);
+		};
+
+		// Set the current page to the on in the url or to the default if the url is equal to /app
+		if (window.location.pathname == "/app") {
+			await router.setCurrent("/" + defaultPage);
+		} else {
+			await router.setCurrent(window.location.pathname);
+		}
 
 		console.log("Loaded plugins");
 	} catch (err) {
@@ -43,8 +57,6 @@ window.addEventListener("load", async () => {
 
 	// Save the userinfo in the session storage temporarily so that plugins can still use the username
 	sessionStorage.setItem("user-info", JSON.stringify(tokenManager.getTokenUserData()));
-
-	router.setCurrent("/home");
 });
 
 function insertUsername() {

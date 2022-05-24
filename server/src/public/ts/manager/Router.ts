@@ -20,9 +20,10 @@ export default class Router {
 		this.fallback = fileUrl;
 	}
 
-	public setCurrent(path: string) {
-		if (this.urls.has(path)) this.loadPage(this.urls.get(path));
-		else this.loadPage({ html: this.fallback, css: undefined, js: undefined });
+	public async setCurrent(path: string) {
+		window.history.pushState(path, path, path);
+		if (this.urls.has(path)) await this.loadPage(this.urls.get(path));
+		else await this.loadPage({ html: this.fallback, css: undefined, js: undefined });
 	}
 
 	private async loadPage(route: Route) {
