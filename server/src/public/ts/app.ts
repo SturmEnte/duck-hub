@@ -34,8 +34,13 @@ window.addEventListener("load", async () => {
 		router.setFallback("/404");
 		const defaultPage = await (await loadPlugins(router)).toLowerCase();
 		router.set("/settings", "/html/settings.html", undefined, undefined);
-		document.getElementById("sidenav-bottom").onclick = async () => await router.setCurrent("/settings");
-
+		document.getElementById("sidenav-bottom").onclick = async () => {
+			await router.setCurrent("/settings");
+			const elements = document.getElementsByClassName("sidenav-active");
+			for (let i = 0; i < elements.length; i++) {
+				elements[i].classList.remove("sidenav-active");
+			}
+		};
 		// Load the right page when using the forward or backward button
 		window.onpopstate = async (event) => {
 			await router.setCurrent(event.state);
