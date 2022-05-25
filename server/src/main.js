@@ -41,12 +41,21 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/api", api);
 
 if (config.web_interface) {
-	app.get("/", (req, res) => {
-		res.redirect("/app");
+	const pluginConfig = require("./public/plugins/config.json");
+	const appUrls = ["/settings"];
+	pluginConfig.plugins.forEach((plugin) => {
+		appUrls.push(`/${String(plugin.name).toLowerCase()}`);
 	});
 
 	app.get("/app", (req, res) => {
 		res.sendFile(path.join(__dirname, "./html/app.html"));
+	});
+
+	// Send app if the url is from the app
+	app.get("*", (req, res, next) => {
+		if (appUrls.includes(String(req.path).toLowerCase())) {
+			res.sendFile(path.join(__dirname, "./html/app.html"));
+		} else next();
 	});
 
 	app.get("/login", (req, res) => {
