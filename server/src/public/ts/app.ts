@@ -1,3 +1,5 @@
+import Api from "./Api";
+
 import TokenManager from "./manager/TokenManager";
 import Router from "./manager/Router";
 
@@ -11,6 +13,9 @@ import TokenUserData from "./types/TokenUserData";
 const config: Config = loadConfig();
 const tokenManager: TokenManager = new TokenManager(config);
 let router: Router;
+
+// The api is defined on the window object so it can be accessed by plugins
+(window as any).api = new Api(tokenManager);
 
 window.addEventListener("load", async () => {
 	cachePlugins(config.pluginCacheName + "-v" + config.version)
