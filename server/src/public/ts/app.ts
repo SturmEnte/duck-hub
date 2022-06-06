@@ -13,10 +13,11 @@ import AccountManager from "./manager/AccountManager";
 
 const config: Config = loadConfig();
 const accountManager: AccountManager = new AccountManager();
+const tokenManager: TokenManager = new TokenManager(config, accountManager);
 let router: Router;
 
 // The api is defined on the window object so it can be accessed by plugins
-(window as any).api = new Api(tokenManager);
+(window as any).api = new Api(tokenManager, accountManager);
 
 window.addEventListener("load", async () => {
 	cachePlugins(config.pluginCacheName + "-v" + config.version)
@@ -39,7 +40,7 @@ window.addEventListener("load", async () => {
 		router = new Router();
 		router.setFallback("/404");
 		const defaultPage = await (await loadPlugins(router)).toLowerCase();
-		router.set("/settings", "/html/settings.html", undefined, undefined);
+		router.set("/settings", "/html/settings.html", undefined, "/js/settings.js");
 		document.getElementById("sidenav-bottom").onclick = async () => {
 			await router.setCurrent("/settings");
 			const elements = document.getElementsByClassName("sidenav-active");
