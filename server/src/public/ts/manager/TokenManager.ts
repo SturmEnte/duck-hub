@@ -1,3 +1,5 @@
+import AccountManager from "./AccountManager";
+
 import base64 from "../declarations/base64";
 
 import Config from "../types/Config";
@@ -9,15 +11,14 @@ export default class TokenManager {
 	private accessToken: string;
 	private userData: TokenUserData;
 
-	constructor(config: Config) {
+	constructor(config: Config, accountManager: AccountManager) {
 		this.config = config;
 		this.refreshToken = localStorage.getItem(this.config.refreshTokenStoreName) || "";
 		this.accessToken = sessionStorage.getItem(this.config.accessTokenCacheName);
 
 		// Validate refresh token
 		if (!this.refreshToken) {
-			// Logout
-			console.log("Logout");
+			accountManager.logout();
 		}
 
 		const tokenData = this.getTokenData(this.refreshToken);
@@ -28,14 +29,12 @@ export default class TokenManager {
 		};
 
 		if (!tokenData.id || !tokenData.username) {
-			// Logout
-			console.log("Logout");
+			accountManager.logout();
 		}
 
 		// Check if token is expired
 		if (Date.now() - tokenData.exp * 1000 >= 0) {
-			// Logout
-			console.log("Logout");
+			accountManager.logout();
 		}
 	}
 

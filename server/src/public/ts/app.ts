@@ -9,9 +9,10 @@ import loadConfig from "./utility/loadConfig";
 
 import Config from "./types/Config";
 import TokenUserData from "./types/TokenUserData";
+import AccountManager from "./manager/AccountManager";
 
 const config: Config = loadConfig();
-const tokenManager: TokenManager = new TokenManager(config);
+const accountManager: AccountManager = new AccountManager();
 let router: Router;
 
 // The api is defined on the window object so it can be accessed by plugins
