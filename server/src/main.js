@@ -47,6 +47,10 @@ if (config.web_interface) {
 		appUrls.push(`/${String(plugin.name).toLowerCase()}`);
 	});
 
+	app.get("/", (req, res) => {
+		res.redirect("/app");
+	});
+
 	app.get("/app", (req, res) => {
 		res.sendFile(path.join(__dirname, "./html/app.html"));
 	});
