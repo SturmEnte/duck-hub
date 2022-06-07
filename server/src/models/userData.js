@@ -9,6 +9,10 @@ const schema = new Schema({
 		type: Object,
 		required: true,
 	},
+	lastChange: {
+		type: Number,
+		required: true,
+	},
 });
 
 module.exports = model("user_data", schema);
