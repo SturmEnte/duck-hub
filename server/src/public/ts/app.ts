@@ -39,7 +39,7 @@ window.addEventListener("load", async () => {
 	try {
 		router = new Router();
 		router.setFallback("/404");
-		const defaultPage = await (await loadPlugins(router)).toLowerCase();
+		const defaultPage = await loadPlugins(router);
 		router.set("/settings", "/html/settings.html", undefined, "/js/settings.js");
 		document.getElementById("sidenav-bottom").onclick = async () => {
 			await router.setCurrent("/settings");
@@ -55,7 +55,8 @@ window.addEventListener("load", async () => {
 
 		// Set the current page to the on in the url or to the default if the url is equal to /app
 		if (window.location.pathname == "/app") {
-			await router.setCurrent("/" + defaultPage);
+			await router.setCurrent("/" + defaultPage.toLocaleLowerCase());
+			document.getElementById(defaultPage).classList.add("sidenav-active");
 		} else {
 			await router.setCurrent(window.location.pathname);
 		}
