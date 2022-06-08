@@ -88,3 +88,8 @@ function insertUsername() {
 		usernameItems[i].innerHTML = username;
 	}
 }
+
+// Online/Offline detector
+(window as any).online = true;
+window.addEventListener("online", () => ((window as any).online = true));
+window.addEventListener("offline", () => ((window as any).online = false));
