@@ -15,6 +15,6 @@ Note: Variables marked with an \* have no default setting and must therefore be 
 - ACCESS_TOKEN_SECRET: The secret for the access token\*
 - REFRESH_TOKEN_SECRET: The secret for the refresh token\*
 
-Important notes about other variables:
+Important notes:
 
 - refresh_token_expire_time: This variable must be a number and states the expiration time of refresh tokens in days
