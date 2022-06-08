@@ -46,7 +46,7 @@ export default class TokenManager {
 		let accessToken = this.accessToken;
 		let accessTokenData = this.getTokenData(accessToken);
 
-		if (!accessToken || Date.now() - accessTokenData.exp * 1000 >= 0) {
+		if (!accessToken || Date.now() - accessTokenData.exp * 1000 <= 0) {
 			const res = await fetch("/api/auth/token", {
 				method: "post",
 				headers: {
