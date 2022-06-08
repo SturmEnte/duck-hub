@@ -1,6 +1,7 @@
 export default class AccountManager {
-	logout() {
+	async logout() {
 		localStorage.clear();
+		await fetch("/api/auth/logout", { method: "delete", body: JSON.stringify({ refresh_token: localStorage.getItem("refresh_token") }) });
 		window.location.href = "/login";
 	}
 }
