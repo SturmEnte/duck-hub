@@ -9,7 +9,6 @@ export default class Router {
 	constructor() {
 		this.urls = new Map<string, Route>();
 		this.wrapper = document.getElementById("wrapper");
-		this.wrapper.innerHTML = "Hello World";
 	}
 
 	public set(path: string, html: string, css: string | undefined, js: string | undefined) {
